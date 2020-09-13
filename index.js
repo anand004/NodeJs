@@ -2,15 +2,19 @@ var rect = require('./rectangle')
 
 function solveRectangle(l,b){
     console.log("Solving for length = "+l+" breadth = "+b);
-    if(l<=0 || b<=0){
-        console.log("Cannot calculate area for length or breadth less than zero");
-
-    }
-    else{
-        console.log("Area = "+rect.area(l,b));
-        console.log("Perimeter = "+rect.perimeter(l,b));
-    }
+    rect(l,b, (err,rectangle) => {
+        if(err){
+            console.log("ERROR : "+err.message);
+        }
+        else{
+            console.log("Area of Rectangle having l = "+l+" & b = "+b +" = "+rectangle.area(l,b));
+            console.log("Perimeter of Rectangle having l = "+l+" & b = "+b +" = "+rectangle.perimeter(l,b));
+        }
+    })
+    console.log("After Solving Length & Breadth");
+    
 }
 
 solveRectangle(4,3);
 solveRectangle(-1,5);
+solveRectangle(0,5)
